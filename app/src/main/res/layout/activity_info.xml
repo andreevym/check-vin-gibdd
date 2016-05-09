@@ -5,26 +5,38 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
+        android:background="@color/toolbarBackground"
+        android:titleTextColor="@color/toolbarText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/toolbar" />
+        android:layout_height="wrap_content"/>
 
     <FrameLayout
         android:id="@+id/result_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <Button
-        android:id="@+id/checkBtn"
-        android:text="Проверить другое транспортное средство"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        android:layout_width="270dp"
-        android:layout_height="60dp"
-        android:background="@drawable/button_shape"
-        android:shadowColor="#A8A8A8"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="5"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <Button
+            android:id="@+id/clearBtn"
+            android:text="@string/clear"
+            android:textColor="#000000"
+            android:background="#afafaf"
+            android:textSize="24sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/newRequestBtn"
+            android:text="Новый запрос"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:background="#669900"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 </LinearLayout>

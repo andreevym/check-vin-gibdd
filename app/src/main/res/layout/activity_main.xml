@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="ru.android_studio.checkvinbygibdd.MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:background="@color/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </android.support.v7.widget.Toolbar>
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:layout_height="?android:attr/actionBarSize"
+        app:titleTextColor="@color/toolbarText"
+        app:contentInsetStart="0dp"
+        android:gravity="top"
+        android:background="@color/toolbarBackground"/>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:gravity="center"
+        android:layout_below="@+id/toolbar"
         android:orientation="vertical">
 
         <TextView
@@ -41,7 +45,8 @@
         <ImageView
             android:id="@+id/captchaIV"
             android:layout_width="300dp"
-            android:layout_height="100dp" />
+            android:layout_height="100dp"
+            android:contentDescription="captcha" />
 
         <TextView
             android:id="@+id/captchaTV"
@@ -57,19 +62,34 @@
             android:inputType="number"
             android:textSize="@dimen/field_description"
             android:maxLength="5" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        >
+
+        <Button
+            android:id="@+id/clearBtn"
+            android:text="@string/clear"
+            android:textColor="#000000"
+            android:background="#afafaf"
+            android:textSize="24sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            />
 
         <Button
             android:id="@+id/checkBtn"
             android:text="@string/check"
             android:textColor="#FFFFFF"
-            android:textSize="30sp"
-            android:layout_width="270dp"
-            android:layout_height="60dp"
-            android:background="@drawable/button_shape"
-            android:shadowColor="#A8A8A8"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="5"
+            android:textSize="24sp"
+            android:background="#669900"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
             />
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

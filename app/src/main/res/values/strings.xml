@@ -3,6 +3,7 @@
     <string name="vin">Укажите идентификационный номер ТС (VIN), а в случае его отсутствия − номер кузова или шасси:</string>
     <string name="captcha">Введите цифры, изображенные на картинке</string>
     <string name="check">Проверить</string>
+    <string name="clear">Очистить</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -13,4 +14,5 @@
     <string name="tsyearLabel">Год выпуска ТС</string>
     <string name="tsmodelLabel">Марка (модель) ТС</string>
     <string name="restrictedTitle">НАЛОЖЕНО ОГРАНИЧЕНИЕ</string>
+    <string name="wantedTitle">Значится в розыске</string>
 </resources>

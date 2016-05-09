@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.View;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,7 +20,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class InfoActivity extends AppCompatActivity {
+public class InfoActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "InfoActivity";
     String vin;
@@ -57,6 +57,8 @@ public class InfoActivity extends AppCompatActivity {
         captcha = extras.getString(MainActivity.CAPTCHA);
         phpsessid = extras.getString(MainActivity.PHPSESS_ID);
 
+        findViewById(R.id.newRequestBtn).setOnClickListener(this);
+
         try {
             new RetrieveCaptchaTask().execute().get();
         } catch (Exception e) {
@@ -68,7 +70,6 @@ public class InfoActivity extends AppCompatActivity {
         ActionBar supportActionBar = getSupportActionBar();
         supportActionBar.setHomeButtonEnabled(true);
         supportActionBar.setDisplayHomeAsUpEnabled(true);
-        supportActionBar.setIcon(R.mipmap.ic_launcher);
     }
 
     private class RetrieveCaptchaTask extends AsyncTask<String, Void, String> {
@@ -88,6 +89,12 @@ public class InfoActivity extends AppCompatActivity {
                     JSONObject resultJsonObject = new JSONObject(resultJson);
                     restricted(resultJsonObject);
                     wanted(resultJsonObject);
+
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    EmptyFragment restrictedFragment = EmptyFragment.newInstance();
+                    fragmentTransaction.replace(R.id.result_fragment, restrictedFragment);
+                    fragmentTransaction.commit();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -101,9 +108,9 @@ public class InfoActivity extends AppCompatActivity {
     private void wanted(JSONObject resultJsonObject) throws JSONException {
         JSONObject wanted = resultJsonObject.getJSONObject("wanted");
         JSONArray wantedRestricted = wanted.getJSONArray("records");
-
-        for (int i = 0; i < wantedRestricted.length(); i++) {
-            JSONObject item = wantedRestricted.getJSONObject(i);
+        if (wantedRestricted.length() < 1) {return;}
+        //for (int i = 0; i < wantedRestricted.length(); i++) {
+            JSONObject item = wantedRestricted.getJSONObject(0);
 
             String model = item.getString("w_model");       // Марка (модель) ТС
             String godVyp = item.getString("w_god_vyp");    // Год выпуска ТС
@@ -114,8 +121,12 @@ public class InfoActivity extends AppCompatActivity {
             String regInic = item.getString("w_reg_inic");  // Регион инициатора розыска
             String dataOper = item.getString("w_data_oper");// Дата оперативного учета
 
-            Log.i(TAG, "wantedRestricted: " + i);
-        }
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            WantedFragment restrictedFragment = WantedFragment.newInstance(model, godVyp, dataPu, regZn, kuzov, shassi, regInic, dataOper);
+            fragmentTransaction.replace(R.id.result_fragment, restrictedFragment);
+            fragmentTransaction.commit();
+        //}
     }
 
     /*
@@ -126,6 +137,8 @@ public class InfoActivity extends AppCompatActivity {
         JSONArray recordsRestricted = restricted.getJSONArray("records");
 
         //for (int i = 0; i < recordsRestricted.length(); i++) {
+        if (recordsRestricted.length() < 1) {return;}
+
             JSONObject item = recordsRestricted.getJSONObject(0);
             String tsmodel = item.getString("tsmodel"); // Марка (модель) ТС
             String tsyear = item.getString("tsyear");   // Год выпуска ТС
@@ -197,5 +210,14 @@ public class InfoActivity extends AppCompatActivity {
         in.close();
 
         return response.toString();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.newRequestBtn:
+                finish();
+            break;
+        }
     }
 }

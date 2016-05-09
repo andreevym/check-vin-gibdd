@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/restrictedList"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".EmptyFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Информации о розыске транспортного средства, имеющего VIN (номер кузова или шасси), в федеральной информационной системе МВД России не найдено."
+        android:textSize="@dimen/field_description"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Информации о наложении ограничений на регистрационные действия с транспортным средством, имеющим VIN (номер кузова или шасси), в федеральной информационной системе МВД России не найдено."
+        android:textSize="@dimen/field_description"
+        android:paddingTop="20dp"
+        android:textStyle="bold" />
+</LinearLayout>

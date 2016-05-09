@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#33b5e5</color>
+    <color name="colorPrimaryDark">#33b5e5</color>
+    <color name="colorAccent">#33b5e5</color>
+
+    <!-- Green -->
+    <color name="green_temp">#23A96E</color>
+    <color name="green_dark">#159204</color>
+    <color name="bright_green">#02D8B0</color>
+    <color name="button_green">#10a54a</color>
+    <color name="toolbarBackground">#33b5e5</color>
+    <color name="toolbarText">#ffffff</color>
+
+    <color name="colorTitleBackgroundBlack">#967ad6</color>
+    <color name="colorTitle">#ffffff</color>
+    <color name="colorSplashDrawableBlack">#ffffff</color>
 </resources>

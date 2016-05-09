@@ -5,12 +5,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ActionBar supportActionBar = getSupportActionBar();
-        supportActionBar.setIcon(R.mipmap.ic_launcher);
 
         imageView = (ImageView) findViewById(R.id.captchaIV);
         imageView.setOnClickListener(this);
@@ -47,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         vinET = (EditText) findViewById(R.id.vinET);
 
         findViewById(R.id.checkBtn).setOnClickListener(this);
+        findViewById(R.id.clearBtn).setOnClickListener(this);
         loadCaptcha();
     }
 
@@ -142,17 +141,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.checkBtn:
+                if(vinET.getText().toString().length() != 20 || captchaET.getText().length() != 5) {
+                    Toast.makeText(this, "Заполните поля", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
                 intent.putExtra(VIN, vinET.getText().toString());
                 intent.putExtra(CAPTCHA, captchaET.getText().toString());
                 intent.putExtra(PHPSESS_ID, MainActivity.phpsessId);
                 startActivity(intent);
+                loadCaptcha();
                 vinET.getText().clear();
                 captchaET.getText().clear();
-                loadCaptcha();
                 break;
             case R.id.captchaIV:
                 loadCaptcha();
+                break;
+            case R.id.clearBtn:
+                loadCaptcha();
+                vinET.getText().clear();
+                captchaET.getText().clear();
                 break;
         }
     }

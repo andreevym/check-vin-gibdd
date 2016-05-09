@@ -11,90 +11,117 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/restrictedTitle"
+        android:text="@string/wantedTitle"
         android:textSize="@dimen/field_description"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tsmodelLabel"
+        android:id="@+id/modelLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tsmodelLabel"
+        android:text="Марка (модель) ТС"
         android:textSize="@dimen/field_description"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tsmodelTV"
+        android:id="@+id/modelTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/field_value" />
 
     <TextView
-        android:id="@+id/tsyearLabel"
+        android:id="@+id/godVypLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tsyearLabel"
+        android:text="Год выпуска ТС"
         android:textSize="@dimen/field_description"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tsyearTV"
+        android:id="@+id/godVypTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/field_value" />
 
     <TextView
-        android:id="@+id/dateogrLabel"
+        android:id="@+id/dataPuLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/dateogrLabel"
+        android:text="Дата постоянного учета"
         android:textSize="@dimen/field_description"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/dateogrTV"
+        android:id="@+id/dataPuTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/field_value" />
 
     <TextView
-        android:id="@+id/regnameLabel"
+        android:id="@+id/regZnLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/regnameLabel"
+        android:text="Гос. рег. знак"
         android:textSize="@dimen/field_description"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/regnameTV"
+        android:id="@+id/regZnTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/field_value" />
 
     <TextView
-        android:id="@+id/divtypeLabel"
+        android:id="@+id/kuzovLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/divtypeLabel"
+        android:text="Номер кузова"
         android:textSize="@dimen/field_description"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/divtypeTV"
+        android:id="@+id/kuzovTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/field_value" />
 
     <TextView
-        android:id="@+id/ogrkodLabel"
+        android:id="@+id/shassiLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ogrkodLabel"
+        android:text="Номер шасси"
         android:textSize="@dimen/field_description"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/ogrkodTV"
+        android:id="@+id/shassiTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/field_value" />
+
+    <TextView
+        android:id="@+id/regInicLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Регион инициатора розыска"
+        android:textSize="@dimen/field_description"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/regInicTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/field_value" />
+    <TextView
+        android:id="@+id/dataOperLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Дата оперативного учета"
+        android:textSize="@dimen/field_description"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/dataOperTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/field_value" />
