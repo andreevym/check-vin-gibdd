@@ -1,0 +1,100 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_gravity="center"
+    tools:context=".RestrictedFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/restrictedTitle"
+        android:textSize="@dimen/field_description"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tsmodelLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/field_description"
+        android:textStyle="bold"
+        android:text="@string/tsmodelLabel" />
+
+    <TextView
+        android:id="@+id/tsmodelTV"
+        android:textSize="@dimen/field_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tsyearLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/field_description"
+        android:textStyle="bold"
+        android:text="@string/tsyearLabel" />
+
+    <TextView
+        android:id="@+id/tsyearTV"
+        android:textSize="@dimen/field_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/dateogrLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/field_description"
+        android:textStyle="bold"
+        android:text="@string/dateogrLabel" />
+
+    <TextView
+        android:id="@+id/dateogrTV"
+        android:textSize="@dimen/field_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/regnameLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/field_description"
+        android:textStyle="bold"
+        android:text="@string/regnameLabel" />
+
+    <TextView
+        android:id="@+id/regnameTV"
+        android:textSize="@dimen/field_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/divtypeLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/field_description"
+        android:textStyle="bold"
+        android:text="@string/divtypeLabel" />
+
+    <TextView
+        android:id="@+id/divtypeTV"
+        android:textSize="@dimen/field_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/ogrkodLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/field_description"
+        android:textStyle="bold"
+        android:text="@string/ogrkodLabel" />
+
+    <TextView
+        android:id="@+id/ogrkodTV"
+        android:textSize="@dimen/field_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
