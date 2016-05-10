@@ -28,23 +28,23 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
     String phpsessid;
 
     String[] divTypeArray = {
-        "",
-        "Судебные органы",
-        "Судебный пристав",
-        "Таможенные органы",
-        "Органы социальной защиты",
-        "Нотариус",
-        "Органы внутренних дел или иные правоохранительные органы",
-        "Органы внутренних дел или иные правоохранительные органы (прочие)"
+            "",
+            "Судебные органы",
+            "Судебный пристав",
+            "Таможенные органы",
+            "Органы социальной защиты",
+            "Нотариус",
+            "Органы внутренних дел или иные правоохранительные органы",
+            "Органы внутренних дел или иные правоохранительные органы (прочие)"
     };
 
     String[] ogrkodArray = {
-        "",
-        "Запрет на регистрационные действия",
-        "Запрет на снятие с учета",
-        "Запрет на регистрационные действия и прохождение ГТО",
-        "Утилизация (для транспорта не старше 5 лет)",
-        "Аннулирование"
+            "",
+            "Запрет на регистрационные действия",
+            "Запрет на снятие с учета",
+            "Запрет на регистрационные действия и прохождение ГТО",
+            "Утилизация (для транспорта не старше 5 лет)",
+            "Аннулирование"
     };
 
     @Override
@@ -87,14 +87,13 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
             if (resultJson != null) {
                 try {
                     JSONObject resultJsonObject = new JSONObject(resultJson);
-                    restricted(resultJsonObject);
-                    wanted(resultJsonObject);
+                    if (restricted(resultJsonObject)) {
 
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    EmptyFragment restrictedFragment = EmptyFragment.newInstance();
-                    fragmentTransaction.replace(R.id.result_fragment, restrictedFragment);
-                    fragmentTransaction.commit();
+                    } else if (wanted(resultJsonObject)) {
+
+                    } else {
+                        empty();
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -102,61 +101,74 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    private void empty() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        EmptyFragment restrictedFragment = EmptyFragment.newInstance();
+        fragmentTransaction.replace(R.id.result_fragment, restrictedFragment);
+        fragmentTransaction.commit();
+    }
+
     /*
     * Значится в розыске
     * */
-    private void wanted(JSONObject resultJsonObject) throws JSONException {
+    private boolean wanted(JSONObject resultJsonObject) throws JSONException {
         JSONObject wanted = resultJsonObject.getJSONObject("wanted");
         JSONArray wantedRestricted = wanted.getJSONArray("records");
-        if (wantedRestricted.length() < 1) {return;}
+        if (wantedRestricted.length() < 1) {
+            return false;
+        }
         //for (int i = 0; i < wantedRestricted.length(); i++) {
-            JSONObject item = wantedRestricted.getJSONObject(0);
+        JSONObject item = wantedRestricted.getJSONObject(0);
 
-            String model = item.getString("w_model");       // Марка (модель) ТС
-            String godVyp = item.getString("w_god_vyp");    // Год выпуска ТС
-            String dataPu = item.getString("w_data_pu");    // Дата постоянного учета
-            String regZn = item.getString("w_reg_zn");      // Гос. рег. знак
-            String kuzov = item.getString("w_kuzov");       // Номер кузова
-            String shassi = item.getString("w_shassi");     // Номер шасси
-            String regInic = item.getString("w_reg_inic");  // Регион инициатора розыска
-            String dataOper = item.getString("w_data_oper");// Дата оперативного учета
+        String model = item.getString("w_model");       // Марка (модель) ТС
+        String godVyp = item.getString("w_god_vyp");    // Год выпуска ТС
+        String dataPu = item.getString("w_data_pu");    // Дата постоянного учета
+        String regZn = item.getString("w_reg_zn");      // Гос. рег. знак
+        String kuzov = item.getString("w_kuzov");       // Номер кузова
+        String shassi = item.getString("w_shassi");     // Номер шасси
+        String regInic = item.getString("w_reg_inic");  // Регион инициатора розыска
+        String dataOper = item.getString("w_data_oper");// Дата оперативного учета
 
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            WantedFragment restrictedFragment = WantedFragment.newInstance(model, godVyp, dataPu, regZn, kuzov, shassi, regInic, dataOper);
-            fragmentTransaction.replace(R.id.result_fragment, restrictedFragment);
-            fragmentTransaction.commit();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        WantedFragment restrictedFragment = WantedFragment.newInstance(model, godVyp, dataPu, regZn, kuzov, shassi, regInic, dataOper);
+        fragmentTransaction.replace(R.id.result_fragment, restrictedFragment);
+        fragmentTransaction.commit();
         //}
+        return true;
     }
 
     /*
     * Наложено ограничение
     * */
-    private void restricted(JSONObject resultJsonObject) throws JSONException {
+    private boolean restricted(JSONObject resultJsonObject) throws JSONException {
         JSONObject restricted = resultJsonObject.getJSONObject("restricted");
         JSONArray recordsRestricted = restricted.getJSONArray("records");
 
         //for (int i = 0; i < recordsRestricted.length(); i++) {
-        if (recordsRestricted.length() < 1) {return;}
+        if (recordsRestricted.length() < 1) {
+            return false;
+        }
 
-            JSONObject item = recordsRestricted.getJSONObject(0);
-            String tsmodel = item.getString("tsmodel"); // Марка (модель) ТС
-            String tsyear = item.getString("tsyear");   // Год выпуска ТС
-            String dateogr = item.getString("dateogr"); //Дата наложения ограничения
-            String regname = item.getString("regname"); // Регион наложения ограничения
+        JSONObject item = recordsRestricted.getJSONObject(0);
+        String tsmodel = item.getString("tsmodel"); // Марка (модель) ТС
+        String tsyear = item.getString("tsyear");   // Год выпуска ТС
+        String dateogr = item.getString("dateogr"); //Дата наложения ограничения
+        String regname = item.getString("regname"); // Регион наложения ограничения
 
-            String divtype = divTypeArray[item.getInt("divtype")]; // Кем наложено ограничение
-            String ogrkod = divTypeArray[item.getInt("ogrkod")];   // Вид ограничения
+        String divtype = divTypeArray[item.getInt("divtype")]; // Кем наложено ограничение
+        String ogrkod = divTypeArray[item.getInt("ogrkod")];   // Вид ограничения
 
-            // подробнее
-            String regid = item.getString("regid");
-            String divid = item.getString("divid");
-            String id = "" + regid + divid;
-            String more = "/contacts/div" + id + "/";
+        // подробнее
+        String regid = item.getString("regid");
+        String divid = item.getString("divid");
+        String id = "" + regid + divid;
+        String more = "/contacts/div" + id + "/";
 
-            // item.getString("gid");
-            // item.getString("dateadd");
-            // Log.i(TAG, "recordsRestricted: " + i);
+        // item.getString("gid");
+        // item.getString("dateadd");
+        // Log.i(TAG, "recordsRestricted: " + i);
         //}
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -164,6 +176,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
         RestrictedFragment restrictedFragment = RestrictedFragment.newInstance(tsmodel, tsyear, dateogr, regname, divtype, ogrkod);
         fragmentTransaction.replace(R.id.result_fragment, restrictedFragment);
         fragmentTransaction.commit();
+        return true;
     }
 
     private String clientRequest(String vin, String captchaWord, String phpsessid) throws IOException {
@@ -217,7 +230,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.newRequestBtn:
                 finish();
-            break;
+                break;
         }
     }
 }
