@@ -37,10 +37,10 @@
             android:id="@+id/vinET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
             android:text=""
             android:textSize="@dimen/field_description"
-            android:maxLength="20" />
+            android:maxLength="20"
+            android:inputType="text" />
 
         <ImageView
             android:id="@+id/captchaIV"
