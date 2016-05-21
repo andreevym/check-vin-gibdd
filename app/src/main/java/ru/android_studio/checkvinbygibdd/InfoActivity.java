@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -95,7 +96,9 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                         empty();
                     }
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
+                    Toast.makeText(getBaseContext(), R.string.invalid_captcha, Toast.LENGTH_LONG).show();
+                    finish();
                 }
             }
         }

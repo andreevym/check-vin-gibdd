@@ -23,8 +23,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:layout_below="@+id/toolbar"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerInParent="true">
 
         <TextView
             android:id="@+id/vinTV"
@@ -39,8 +40,11 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textSize="@dimen/field_description"
-            android:maxLength="20"
-            android:inputType="text" />
+            android:maxLength="17"
+            android:inputType="text"
+            android:maxLines="1"
+            android:minLines="1"
+            android:lines="1" />
 
         <ImageView
             android:id="@+id/captchaIV"

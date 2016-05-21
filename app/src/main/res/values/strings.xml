@@ -15,4 +15,5 @@
     <string name="tsmodelLabel">Марка (модель) ТС</string>
     <string name="restrictedTitle">НАЛОЖЕНО ОГРАНИЧЕНИЕ</string>
     <string name="wantedTitle">Значится в розыске</string>
+    <string name="invalid_captcha">Неверный код подтверждения</string>
 </resources>

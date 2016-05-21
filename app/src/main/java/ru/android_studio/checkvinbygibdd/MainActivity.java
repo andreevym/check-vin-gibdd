@@ -141,18 +141,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.checkBtn:
-                if(vinET.getText().toString().length() != 20 || captchaET.getText().length() != 5) {
-                    Toast.makeText(this, "Заполните поля", Toast.LENGTH_SHORT).show();
+                if(vinET.getText().toString().length() != 17) {
+                    Toast.makeText(this, "VIN номер должен быть 17 символов", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                if(captchaET.getText().length() != 5) {
+                    Toast.makeText(this, "Код подтверждения должен быть 5 символов", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
                 intent.putExtra(VIN, vinET.getText().toString());
                 intent.putExtra(CAPTCHA, captchaET.getText().toString());
                 intent.putExtra(PHPSESS_ID, MainActivity.phpsessId);
                 startActivity(intent);
+
                 loadCaptcha();
-                vinET.getText().clear();
                 captchaET.getText().clear();
+                //vinET.getText().clear();
                 break;
             case R.id.captchaIV:
                 loadCaptcha();
